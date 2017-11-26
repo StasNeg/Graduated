@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "warn")
 public class WarningTemperature extends AbstractBaseEntity {
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_Trip", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

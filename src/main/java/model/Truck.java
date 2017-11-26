@@ -4,10 +4,10 @@ package model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import static model.Truck.DELETE;
+
 
 @NamedQueries({
-        @NamedQuery(name = DELETE, query = "DELETE FROM Truck u WHERE u.id=:id"),
+        @NamedQuery(name = Truck.DELETE, query = "DELETE FROM Truck u WHERE u.id=:id"),
         @NamedQuery(name = Truck.ALL, query = "SELECT t FROM Truck t")}
         )
 
@@ -15,8 +15,8 @@ import static model.Truck.DELETE;
 @Access(AccessType.FIELD)
 @Table(name = "trucks")
 public class Truck extends AbstractBaseEntity {
-    public static final String DELETE = "DELETE";
-    public static final String ALL = "ALL";
+    public static final String DELETE = "DELETE_TRUCK";
+    public static final String ALL = "ALL_TRUCK";
 
     @NotNull
     @Column(name = "name", nullable = false)

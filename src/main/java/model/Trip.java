@@ -14,8 +14,8 @@ import java.util.List;
 @Access(AccessType.FIELD)
 @Table(name = "trips")
 public class Trip extends AbstractBaseEntity {
-    public static final String DELETE = "DELETE";
-    public static final String ALL = "ALL";
+    public static final String DELETE = "DELETE_TRIP";
+    public static final String ALL = "ALL_TRIP";
 
 
     @OneToOne @MapsId

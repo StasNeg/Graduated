@@ -16,8 +16,8 @@ import javax.validation.constraints.NotNull;
                 "products_unique_name_idx")})
 public class Product extends AbstractBaseEntity {
 
-    public static final String DELETE = "DELETE";
-    public static final String ALL = "All";
+    public static final String DELETE = "DELETE_PRODUCT";
+    public static final String ALL = "ALL_PRODUCT";
 
     @NotNull
     @Column(name = "name", nullable = false)

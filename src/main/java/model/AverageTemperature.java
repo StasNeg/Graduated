@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "averages")
 public class AverageTemperature extends AbstractBaseEntity {
 
-    public static final String ALL = "ALL";
+    public static final String ALL = "ALL_AVERAGE";
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_Trip", nullable = false)
