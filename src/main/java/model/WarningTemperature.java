@@ -6,11 +6,17 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@NamedQueries({
+        @NamedQuery(name = WarningTemperature.ALL, query = "SELECT w FROM WarningTemperature w"),
+})
+
+
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "warn")
 public class WarningTemperature extends AbstractBaseEntity {
 
+    public static final java.lang.String ALL = "WARN_ALL";
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_Trip", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -63,5 +69,13 @@ public class WarningTemperature extends AbstractBaseEntity {
 
     public void setLowerTemperature(int lowerTemperature) {
         this.lowerTemperature = lowerTemperature;
+    }
+
+    @Override
+    public String toString() {
+        return "WarningTemperature{" +
+                "exceedTemperature=" + exceedTemperature +
+                ", lowerTemperature=" + lowerTemperature +
+                "} " + super.toString();
     }
 }

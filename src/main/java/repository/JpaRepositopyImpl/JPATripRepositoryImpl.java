@@ -1,5 +1,6 @@
 package repository.JpaRepositopyImpl;
 
+import model.AverageTemperature;
 import model.Trip;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +8,7 @@ import repository.DAO.AbstractDaoImpl;
 import repository.TripRepository;
 import util.NotFoundException;
 
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -43,6 +45,11 @@ public class JPATripRepositoryImpl extends AbstractDaoImpl<Trip> implements Trip
                 .executeUpdate() == 0) throw new NotFoundException("User with id " + id + " is not available");
     }
 
+    @Override
+    public List<AverageTemperature> getByIdandNameTrack(int id, String name) {
+        Query query = em.createNamedQuery(Trip.GET_BY_ID).setParameter("id", id).setParameter("name", name);
+        return query.getResultList();
+    }
 
     @Override
     public List<Trip> getAll() {

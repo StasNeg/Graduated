@@ -46,4 +46,6 @@ public class Truck extends AbstractBaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

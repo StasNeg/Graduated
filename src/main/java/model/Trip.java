@@ -1,5 +1,7 @@
 package model;
 
+import org.hibernate.annotations.BatchSize;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -7,7 +9,10 @@ import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = Trip.DELETE, query = "DELETE FROM Trip trip WHERE trip.id=:id"),
-        @NamedQuery(name = Trip.ALL, query = "SELECT t FROM Trip t")}
+        @NamedQuery(name = Trip.ALL, query = "SELECT t FROM Trip t JOIN fetch t.product Join Fetch t.truck"),
+        @NamedQuery(name = Trip.GET_BY_ID, query = "SELECT temp FROM Trip t join t.temperatures temp " +
+                "WHERE t.id=:id and t.truck.name LIKE CONCAT('%',:name,'%')")}
+
 )
 
 @Entity
@@ -16,17 +21,17 @@ import java.util.List;
 public class Trip extends AbstractBaseEntity {
     public static final String DELETE = "DELETE_TRIP";
     public static final String ALL = "ALL_TRIP";
+    public static final String GET_BY_ID = "GET_TRIP_BY_ID";
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "truck")
+    @BatchSize(size = 200)
+    private Truck truck;
 
-    @OneToOne @MapsId
-    @NotNull
-//    Column(name = "id_Truck", nullable = false)
-    private Truck idTruck;
-
-    @OneToOne @MapsId
-    @NotNull
-//    @Column(name = "id_Products", nullable = false)
-    private Product idProduct;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product")
+    @BatchSize(size = 200)
+    private Product product;
 
 
     @NotNull
@@ -43,44 +48,51 @@ public class Trip extends AbstractBaseEntity {
     public Trip() {
     }
 
-    public Trip(Integer id, Truck idTruck, Product idProduct, LocalDateTime tripDate, List<AverageTemperature> temperatures, List<WarningTemperature> warnTemperatures) {
+    public Trip(Integer id, Truck truck, Product product, LocalDateTime tripDate) {
         super(id);
-        this.idTruck = idTruck;
-        this.idProduct = idProduct;
+        this.truck = truck;
+        this.product = product;
+        this.tripDate = tripDate;
+    }
+
+    public Trip(Integer id, Truck truck, Product product, LocalDateTime tripDate, List<AverageTemperature> temperatures, List<WarningTemperature> warnTemperatures) {
+        super(id);
+        this.truck = truck;
+        this.product = product;
         this.tripDate = tripDate;
         this.temperatures = temperatures;
         this.warnTemperatures = warnTemperatures;
     }
 
-    public Trip(Truck idTruck, Product idProduct, LocalDateTime tripDate, List<AverageTemperature> temperatures, List<WarningTemperature> warnTemperatures) {
-        this.idTruck = idTruck;
-        this.idProduct = idProduct;
+    public Trip(Truck truck, Product product, LocalDateTime tripDate, List<AverageTemperature> temperatures, List<WarningTemperature> warnTemperatures) {
+        this.truck = truck;
+        this.product = product;
         this.tripDate = tripDate;
         this.temperatures = temperatures;
         this.warnTemperatures = warnTemperatures;
     }
 
-    public Trip(Truck idTruck, Product idProduct, LocalDateTime tripDate) {
-        this.idTruck = idTruck;
-        this.idProduct = idProduct;
+    public Trip(Truck truck, Product product, LocalDateTime tripDate) {
+        this.truck = truck;
+        this.product = product;
         this.tripDate = tripDate;
     }
 
 
-    public Truck getIdTruck() {
-        return idTruck;
+    public Truck getTruck() {
+        return truck;
     }
 
-    public void setIdTruck(Truck idTruck) {
-        this.idTruck = idTruck;
+    public void setTruck(Truck idTruck) {
+        this.truck = idTruck;
     }
 
-    public Product getIdProduct() {
-        return idProduct;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setIdProduct(Product idProduct) {
-        this.idProduct = idProduct;
+    public void setProduct(Product idProduct) {
+        this.product = idProduct;
     }
 
     public LocalDateTime getTripDate() {
@@ -109,10 +121,10 @@ public class Trip extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-        return "Trip{" +
-                "idTruck=" + idTruck +
-                ", idProduct=" + idProduct +
+        return super.toString()+ "Trip{" +
+//                "truck=" + truck +
+//                ", product=" + product +
                 ", tripDate=" + tripDate +
-                '}';
+                "} " ;
     }
 }

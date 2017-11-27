@@ -28,10 +28,10 @@ CREATE UNIQUE INDEX truck_unique_name_idx
 
 CREATE TABLE trips
 (
-  id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  id_truck    INTEGER   NOT NULL,
-  id_products INTEGER   NOT NULL,
-  trip_date   TIMESTAMP NOT NULL
+  id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  truck     INTEGER   ,
+  product   INTEGER   ,
+  trip_date TIMESTAMP NOT NULL
 );
 
 CREATE TABLE averages

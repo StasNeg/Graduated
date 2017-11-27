@@ -61,4 +61,6 @@ public abstract class AbstractBaseEntity {
     public boolean isNew() {
         return getId() == null;
     }
+
+
 }
