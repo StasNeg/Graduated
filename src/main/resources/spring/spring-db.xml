@@ -28,12 +28,15 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:packagesToScan="model">
-
         <property name="jpaPropertyMap">
             <map>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}"
                        value="${hibernate.use_sql_comments}"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).STATEMENT_BATCH_SIZE}" value="30"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).CURRENT_SESSION_CONTEXT_CLASS}" value="30"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).ORDER_INSERTS}" value="true"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).BATCH_VERSIONED_DATA}" value="thread"/>
             </map>
         </property>
 

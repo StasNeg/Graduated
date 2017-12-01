@@ -12,7 +12,6 @@ import java.util.List;
         @NamedQuery(name = Trip.ALL, query = "SELECT t FROM Trip t JOIN fetch t.product Join Fetch t.truck"),
         @NamedQuery(name = Trip.GET_BY_ID, query = "SELECT temp FROM Trip t join t.temperatures temp " +
                 "WHERE t.id=:id and t.truck.name LIKE CONCAT('%',:name,'%')")}
-
 )
 
 @Entity

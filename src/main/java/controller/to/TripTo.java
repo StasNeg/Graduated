@@ -5,16 +5,17 @@ import model.Trip;
 
 public class TripTo {
     private Integer idTrip;
-    private Integer[] temperature;
+    private Integer tempMin;
+    private Integer tempMax;
 
-    public TripTo(Integer idTrip, Integer[] temperature) {
+    public TripTo(Integer idTrip, Integer tempMin, Integer tempMax) {
         this.idTrip = idTrip;
-        this.temperature = temperature;
+        this.tempMin = tempMin;
+        this.tempMax = tempMax;
     }
 
     public static TripTo fromTrip(Trip from){
-        Integer[] temp = {from.getProduct().getMinTemperature(), from.getProduct().getMaxTemperature()};
-        return new TripTo(from.getId(), temp);
+        return new TripTo(from.getId(), from.getProduct().getMinTemperature(), from.getProduct().getMaxTemperature());
     }
 
 }

@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = WarningTemperature.ALL, query = "SELECT w FROM WarningTemperature w"),
@@ -23,14 +24,17 @@ public class WarningTemperature extends AbstractBaseEntity {
     @NotNull
     private Trip trip;
 
-    @NotNull
+
     @Column(name = "exceed_temperature", nullable = false)
     private int exceedTemperature;
 
-    @NotNull
+
     @Column(name = "lower_temperature", nullable = false)
     private int lowerTemperature;
 
+    @NotNull
+    @Column(name = "trip_date", nullable = false)
+    private LocalDateTime tripDate;
     public WarningTemperature() {
     }
 

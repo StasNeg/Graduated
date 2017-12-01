@@ -46,8 +46,9 @@ CREATE TABLE warn
 (
   id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   id_trip            INTEGER NOT NULL,
-  exceed_temperature INTEGER NOT NULL,
-  lower_temperature  INTEGER NOT NULL
+  exceed_temperature INTEGER,
+  lower_temperature  INTEGER,
+  trip_date          TIMESTAMP NOT NULL
 );
 
 
