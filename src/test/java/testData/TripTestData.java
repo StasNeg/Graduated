@@ -1,7 +1,7 @@
 package testData;
 
 
-import model.Trip;
+import refrigerators.model.Trip;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import static testData.TruckTestData.SECOND;
 public class TripTestData {
 
     public static final int FIRST_TRIP_ID = FIRST_PRODUCT_ID+6;
-    public static final LocalDateTime DATE_TIME = LocalDateTime.of(2017,11,27,13,00);
+    public static final LocalDateTime DATE_TIME = LocalDateTime.of(2017,11,27,13,0);
     public static final Trip TRIP1 = new Trip( FIRST_TRIP_ID, FIRST,PRODUCT1,DATE_TIME);
     public static final Trip TRIP2 = new Trip( FIRST_TRIP_ID+1, SECOND,PRODUCT2,DATE_TIME);
     public static final Trip TRIP3 = new Trip( FIRST_TRIP_ID+2, FIRST,PRODUCT3,DATE_TIME);

@@ -1,9 +1,9 @@
 package testData;
 
 
-import model.Truck;
+import refrigerators.model.Truck;
 
-import static model.AbstractBaseEntity.START_SEQ;
+import static refrigerators.model.AbstractBaseEntity.START_SEQ;
 
 
 public class TruckTestData {

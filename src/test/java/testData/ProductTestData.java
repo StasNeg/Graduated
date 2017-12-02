@@ -1,12 +1,10 @@
 package testData;
 
-import model.Product;
+import refrigerators.model.Product;
 
 import static testData.TruckTestData.FIRST_ID;
 
-/**
- * Created by Stanislav on 26.11.2017.
- */
+
 public class ProductTestData {
     public static final int FIRST_PRODUCT_ID = FIRST_ID+2;
     public static final Product PRODUCT1 = new Product( FIRST_PRODUCT_ID,"FIRST",-12,-7);

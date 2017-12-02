@@ -2,7 +2,10 @@ DELETE FROM averages;
 DELETE FROM trips;
 DELETE FROM trucks;
 DELETE FROM products;
+DELETE FROM user_roles;
+DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
+ALTER SEQUENCE global_seq_user RESTART WITH 100000;
 
 INSERT INTO trucks (name)
 VALUES  ('FIRST'),
@@ -29,3 +32,10 @@ VALUES (100008,-12.7, '2017-11-27T13:00'),
   (100009, -2.7, '2017-11-27T13:00'),
   (100009, 12.7, '2017-11-27T13:00');
 
+INSERT INTO users (name, email, password)
+VALUES  ('User', 'user@yandex.ru', 'password'),
+  ('Admin', 'admin@gmail.com', 'password');
+
+INSERT INTO user_roles (role, user_id) VALUES
+  ('ROLE_USER', 100000),
+  ('ROLE_ADMIN', 100001);
