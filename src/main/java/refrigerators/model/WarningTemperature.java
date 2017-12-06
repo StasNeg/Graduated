@@ -51,6 +51,13 @@ public class WarningTemperature extends AbstractBaseEntity {
         this.lowerTemperature = lowerTemperature;
     }
 
+    public WarningTemperature(Trip trip, int exceedTemperature, int lowerTemperature, LocalDateTime tripDate) {
+        this.trip = trip;
+        this.exceedTemperature = exceedTemperature;
+        this.lowerTemperature = lowerTemperature;
+        this.tripDate = tripDate;
+    }
+
     public Trip getTrip() {
         return trip;
     }

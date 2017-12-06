@@ -45,7 +45,7 @@ public class JPAUserRepositoryImpl extends AbstractDaoImpl<User> implements User
 
         if (em.createNamedQuery(User.DELETE)
                 .setParameter("id", id)
-                .executeUpdate() == 0) throw new NotFoundException("User with id" + id + "is not available");
+                .executeUpdate() == 0) throw new NotFoundException("User with id " + id + "is not available");
     }
 
 

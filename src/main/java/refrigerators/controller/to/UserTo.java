@@ -1,12 +1,11 @@
 package refrigerators.controller.to;
 
-
-import refrigerators.model.user.Role;
-import refrigerators.model.user.User;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import refrigerators.model.user.Role;
+import refrigerators.model.user.User;
 
+import javax.validation.constraints.Size;
 
 public class UserTo  {
     private static final long serialVersionUID = 1L;
