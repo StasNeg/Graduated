@@ -15,6 +15,8 @@ public class UserService implements UserDetailsService {
     private UserRepository repository;
     @Override
     public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
+        if(AuthorizedUser.safeGet()!=null && AuthorizedUser.get().getUserTo().getEmail().equals(email.toLowerCase()))
+            return AuthorizedUser.get();
         User user = repository.getByEmail(email.toLowerCase());
         if (user == null) {
             throw new UsernameNotFoundException("User " + email + " is not found");

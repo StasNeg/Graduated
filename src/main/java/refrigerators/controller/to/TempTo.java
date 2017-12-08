@@ -1,7 +1,9 @@
 package refrigerators.controller.to;
 
 
-public class TempTo {
+import java.io.Serializable;
+
+public class TempTo implements Serializable{
     private int idTrip;
     private double avgTemp;
     private Long timeStamp;

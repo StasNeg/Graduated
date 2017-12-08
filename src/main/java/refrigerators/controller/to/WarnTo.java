@@ -1,7 +1,9 @@
 package refrigerators.controller.to;
 
 
-public class WarnTo {
+import java.io.Serializable;
+
+public class WarnTo implements Serializable{
     private int id;
     private int temperature;
     private Long timeStamp;

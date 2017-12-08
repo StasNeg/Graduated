@@ -3,11 +3,11 @@ package refrigerators.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 
 @Configuration
 @EnableWebMvc
@@ -16,6 +16,7 @@ public class CorsFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         httpResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:63342");
         httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
@@ -27,7 +28,7 @@ public class CorsFilter implements Filter {
         if ("OPTIONS".equalsIgnoreCase(httpRequest.getMethod())) {
             httpResponse.setStatus(HttpServletResponse.SC_OK);
         } else {
-            chain.doFilter(request, response);
+                chain.doFilter(request, response);
         }
     }
 

@@ -2,8 +2,9 @@ package refrigerators.controller.to;
 
 
 import refrigerators.model.Trip;
+import java.io.Serializable;
 
-public class TripTo {
+public class TripTo implements Serializable{
     private Integer idTrip;
     private Integer tempMin;
     private Integer tempMax;

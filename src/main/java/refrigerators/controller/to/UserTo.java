@@ -6,8 +6,10 @@ import refrigerators.model.user.Role;
 import refrigerators.model.user.User;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.Set;
 
-public class UserTo  {
+public class UserTo  implements Serializable{
     private static final long serialVersionUID = 1L;
     private Integer id;
     @NotBlank
@@ -19,12 +21,31 @@ public class UserTo  {
     private String password;
     public UserTo() {
     }
+    @NotBlank
+    private Set<Role> roles;
 
     public UserTo(Integer id, String name, String email, String password) {
         this.id =id;
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public UserTo(Integer id, String name, String email, String password, Set<Role> roles) {
+
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
     public String getPassword() {
@@ -64,7 +85,7 @@ public class UserTo  {
     }
 
     public static UserTo asTo(User user) {
-        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());
+        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword(),user.getRoles());
     }
 
     public static boolean assureIdConsistent(UserTo userTo, Integer id) {
@@ -88,6 +109,8 @@ public class UserTo  {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

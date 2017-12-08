@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public class TripController {
+public class KafkaTripController {
 
     @Autowired
     private TripRepository repository;
@@ -73,8 +73,4 @@ public class TripController {
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(timeStamp), ZoneId.systemDefault());
     }
 
-    @GetMapping(PathConstants.GET_TRIPS_AUTH)
-    public List<TripTo> getAllAuten() {
-        return repository.getAll().stream().map(TripTo::fromTrip).collect(Collectors.toList());
-    }
 }
