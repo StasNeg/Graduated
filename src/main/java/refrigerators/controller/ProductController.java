@@ -17,7 +17,7 @@ public class ProductController {
     @Autowired
     private ProductRepository repository;
 
-    @GetMapping(path = PathConstants.POST_PRODUCT_ALL, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = PathConstants.GET_PRODUCT_ALL, consumes = MediaType.APPLICATION_JSON_VALUE)
     public FrontPostTo getAll() {
         return new FrontPostTo(true, repository.getAll());
     }
@@ -31,9 +31,15 @@ public class ProductController {
 
     @PostMapping(path = PathConstants.POST_PRODUCT_GET_BY_ID, consumes = MediaType.APPLICATION_JSON_VALUE)
     public FrontPostTo getById(@RequestBody(required = false) Map<String,Object> ss) {
-        System.out.println();
+
         int id = (int)ss.get("id");
         return new FrontPostTo(true, repository.get(id));
     }
+    @PostMapping(path = PathConstants.POST_PRODUCT_DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public FrontPostTo delete(@RequestBody(required = false) Map<String,Object> ss) {
 
+        int id = (int)ss.get("id");
+        repository.delete(id);
+        return new FrontPostTo(true, null);
+    }
 }
