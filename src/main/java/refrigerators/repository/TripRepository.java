@@ -15,6 +15,6 @@ public interface TripRepository {
 
     List getByIdandNameTrack(int id, String name);
 
-
+    void save(int productId, int truckId);
 
 }

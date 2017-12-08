@@ -18,9 +18,9 @@ public class UserController {
         return new FrontPostTo(true, AuthorizedUser.get().getUserTo());
     }
 
-    @PostMapping(path = PathConstants.POST_AUTH_TEST, headers = {"content-type=application/x-www-form-urlencoded"}, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map Test(@RequestBody Map<String, Object> ss) {
-        System.out.println("a m here");
-        return ss;
-    }
+//    @PostMapping(path = PathConstants.POST_AUTH_TEST, headers = {"content-type=application/x-www-form-urlencoded"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public Map Test(@RequestBody Map<String, Object> ss) {
+//        System.out.println("a m here");
+//        return ss;
+//    }
 }

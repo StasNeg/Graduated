@@ -14,9 +14,18 @@ public class PathConstants {
 
     //Products
     public static final String POST_PRODUCT_UPDATE = "/rest/products/update";
-    public static final String POST_PRODUCT_ALL = "/rest/products";
+    public static final String GET_PRODUCT_ALL = "/rest/products";
     public static final String POST_PRODUCT_DELETE = "/rest/products/delete";
     public static final String POST_PRODUCT_GET_BY_ID = "/rest/products/getprod";
+    //Trucks
+    public static final String GET_TRUCK_ALL  = "/rest/trucks";
+    public static final String POST_TRUCK_UPDATE = "/rest/trucks/update";
+    public static final String POST_TRUCK_DELETE = "/rest/trucks/delete";
+    public static final String POST_TRUCK_GET_BY_ID = "/rest/trucks/gettruck";
+    //Trips
+    public static final String GET_TRIP_ALL  = "/rest/trips";
+    public static final String POST_TRIP_UPDATE = "/rest//trips/update";
 
-    public static final String POST_AUTH_TEST = "/tests";
+
+
 }
