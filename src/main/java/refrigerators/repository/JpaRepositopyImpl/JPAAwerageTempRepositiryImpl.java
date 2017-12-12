@@ -8,6 +8,7 @@ import refrigerators.repository.AverageTempRepository;
 import refrigerators.repository.DAO.AbstractDaoImpl;
 import refrigerators.util.NotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Repository
 @Transactional(readOnly = true)
@@ -46,5 +47,27 @@ public class JPAAwerageTempRepositiryImpl extends AbstractDaoImpl<AverageTempera
         AverageTemperature current = super.get(id);
         if(current==null) throw new NotFoundException("Average Temperature with id " + id + " is not available");
         return current;
+    }
+
+    @Override
+    public List getByCountWarningBetween(LocalDateTime start, LocalDateTime end) {
+        if (start == null && end == null)
+            return em.createNamedQuery(AverageTemperature.GET)
+                    .getResultList();
+        if (end == null)
+            return em.createNamedQuery(AverageTemperature.GET_FROM)
+                    .setParameter("startDate", start)
+                    .getResultList();
+        if (start == null)
+            return em.createNamedQuery(AverageTemperature.GET_DUE)
+                    .setParameter("endDate", end)
+                    .getResultList();
+
+        return em.createNamedQuery(AverageTemperature.GET_BEETWEN)
+                .setParameter("startDate", start)
+                .setParameter("endDate", end)
+                .getResultList();
+
+
     }
 }

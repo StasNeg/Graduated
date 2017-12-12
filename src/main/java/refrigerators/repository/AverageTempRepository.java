@@ -2,6 +2,7 @@ package refrigerators.repository;
 
 import refrigerators.model.AverageTemperature;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface AverageTempRepository {
@@ -14,7 +15,5 @@ public interface AverageTempRepository {
     AverageTemperature save(AverageTemperature average);
 
 
-
-
-
+    List getByCountWarningBetween(LocalDateTime start, LocalDateTime end);
 }

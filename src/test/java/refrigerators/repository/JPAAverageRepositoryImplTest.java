@@ -12,6 +12,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import refrigerators.util.NotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import static testData.TripTestData.TRIP2;
         "classpath:spring/spring-db.xml"
 })
 @RunWith(SpringJUnit4ClassRunner.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+//@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class JPAAverageRepositoryImplTest {
 
     private static final BeanMatcher<AverageTemperature> MATCHER = new BeanMatcher<>();
@@ -75,4 +76,15 @@ public class JPAAverageRepositoryImplTest {
         repository.save(updated);
         MATCHER.assertEquals(updated, repository.get(FIRST_AVERAGE_ID + 1));
     }
+
+    @Test
+    public void getStatistic() throws Exception {
+        System.out.println(repository.getByCountWarningBetween(null, null));
+        System.out.println(repository.getByCountWarningBetween(LocalDateTime.of(2017, 11, 27, 13, 0), null));
+        System.out.println(repository.getByCountWarningBetween(null, LocalDateTime.of(2018, 11, 27, 13, 0)));
+        System.out.println(repository.getByCountWarningBetween(
+                LocalDateTime.of(2017, 11, 27, 13, 0),
+                LocalDateTime.of(2018, 11, 27, 13, 0)));
+    }
+
 }

@@ -10,6 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+
 public class UserController {
 
     @PostMapping(path = PathConstants.POST_AUTH, consumes = MediaType.APPLICATION_JSON_VALUE)

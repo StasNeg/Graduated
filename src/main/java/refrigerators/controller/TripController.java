@@ -10,6 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+
 public class TripController {
     @Autowired
     private TripRepository repository;

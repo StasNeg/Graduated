@@ -25,7 +25,9 @@ public class PathConstants {
     //Trips
     public static final String GET_TRIP_ALL  = "/rest/trips";
     public static final String POST_TRIP_UPDATE = "/rest//trips/update";
-
+    //Statistic
+    public static final String GET_ALL_WARNINGS_BY_IDTRIP_AND_DATE = "/rest/statistics/stat/countingWarnings";
+    public static final String GET_ALL_AVERAGE_LIST = "/rest/statistics/stat/averageList";
 
 
 }

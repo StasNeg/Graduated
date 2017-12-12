@@ -9,6 +9,25 @@ import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = AverageTemperature.ALL, query = "SELECT a FROM AverageTemperature a"),
+        @NamedQuery(name = AverageTemperature.GET_BEETWEN, query = "" +
+                "SELECT  t.tripDate, p.name, AVG(a.averageTemperature), p.minTemperature, p.maxTemperature  " +
+                "FROM AverageTemperature a JOIN a.trip t Join t.product p " +
+                "WHERE a.tripDate BETWEEN :startDate AND :endDate "+
+                "GROUP BY t.tripDate, t.id, p.name, p.minTemperature, p.maxTemperature"),
+        @NamedQuery(name = AverageTemperature.GET_FROM, query = "" +
+                "SELECT  t.tripDate, p.name, AVG(a.averageTemperature), p.minTemperature, p.maxTemperature  " +
+                "FROM AverageTemperature a JOIN a.trip t Join t.product p  " +
+                "WHERE a.tripDate >= :startDate "+
+                "GROUP BY t.tripDate, t.id, p.name, p.minTemperature, p.maxTemperature"),
+        @NamedQuery(name = AverageTemperature.GET_DUE, query = "" +
+                "SELECT  t.tripDate, p.name, AVG(a.averageTemperature), p.minTemperature, p.maxTemperature  " +
+                "FROM AverageTemperature a JOIN a.trip t Join t.product p " +
+                "WHERE a.tripDate <= :endDate " +
+                "GROUP BY t.tripDate, t.id, p.name, p.minTemperature, p.maxTemperature"),
+        @NamedQuery(name = AverageTemperature.GET, query = "" +
+                "SELECT  t.tripDate, p.name, AVG(a.averageTemperature), p.minTemperature, p.maxTemperature   " +
+                "FROM AverageTemperature a JOIN a.trip t Join t.product p " +
+                "GROUP BY t.tripDate, t.id, p.name, p.minTemperature, p.maxTemperature")
 })
 
 @Entity
@@ -17,6 +36,10 @@ import java.time.LocalDateTime;
 public class AverageTemperature extends AbstractBaseEntity {
 
     public static final String ALL = "ALL_AVERAGE";
+    public static final String GET_BEETWEN = "AVERAGE_BETWEEN";
+    public static final String GET_FROM = "AVERAGE_FROM";
+    public static final String GET_DUE = "AVERAGE_DUE";
+    public static final java.lang.String GET = "AVERAGE_GET";
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_Trip", nullable = false)

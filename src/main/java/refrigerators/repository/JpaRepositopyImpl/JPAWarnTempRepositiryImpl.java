@@ -1,6 +1,7 @@
 package refrigerators.repository.JpaRepositopyImpl;
 
 
+import refrigerators.controller.to.WarnStatisticTo;
 import refrigerators.model.WarningTemperature;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +9,7 @@ import refrigerators.repository.DAO.AbstractDaoImpl;
 import refrigerators.repository.WarnTempRepository;
 import refrigerators.util.NotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -47,5 +49,32 @@ public class JPAWarnTempRepositiryImpl extends AbstractDaoImpl<WarningTemperatur
         WarningTemperature current = super.get(id);
         if(current==null) throw new NotFoundException("Warn Temperature with id " + id + " is not available");
         return current;
+    }
+
+    @Override
+    public List<WarnStatisticTo> getByCountWarningBetween(int count, LocalDateTime start, LocalDateTime end) {
+        if (count < 1) count = 1;
+        if (start == null && end == null)
+            return em.createNamedQuery(WarningTemperature.GET_BY_COUNT, WarnStatisticTo.class)
+                    .setParameter("countId", (long) count)
+                    .getResultList();
+        if (end == null)
+            return em.createNamedQuery(WarningTemperature.GET_BY_COUNT_FROM, WarnStatisticTo.class)
+                    .setParameter("countId", (long) count)
+                    .setParameter("startDate", start)
+                    .getResultList();
+        if (start == null)
+            return em.createNamedQuery(WarningTemperature.GET_BY_COUNT_DUE, WarnStatisticTo.class)
+                    .setParameter("countId", (long) count)
+                    .setParameter("endDate", end)
+                    .getResultList();
+
+        return em.createNamedQuery(WarningTemperature.GET_BY_COUNT_BEETWEN, WarnStatisticTo.class)
+                .setParameter("countId", (long) count)
+                .setParameter("startDate", start)
+                .setParameter("endDate", end)
+                .getResultList();
+
+
     }
 }

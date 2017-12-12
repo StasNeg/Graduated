@@ -24,7 +24,7 @@ public class RestAuthenticationEntryPoint
     @Override
     public void afterPropertiesSet() throws Exception {
         setRealmName("MyRealm");
-        super.afterPropertiesSet();
+//        super.afterPropertiesSet();
     }
 
 }

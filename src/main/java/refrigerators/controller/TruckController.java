@@ -12,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+
 public class TruckController {
     @Autowired
     private TruckRepository repository;
